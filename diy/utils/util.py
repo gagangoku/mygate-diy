@@ -1,5 +1,6 @@
 import json
 
+import ssl
 import extra_streamlit_components as stx
 import mysql.connector
 import streamlit as st
@@ -83,14 +84,14 @@ def processLinkedinRedirect():
 
 
 # Initialize connection.
-# Uses st.experimental_singleton to only run once.
-@st.experimental_singleton
+# Don't use st.experimental_singleton because connections can go bad, use st.cache with ttl of 5 mins
+@st.cache(ttl=300, hash_funcs={ssl.SSLSocket: id}, allow_output_mutation=True)
 def initMysqlConnection():
     return mysql.connector.connect(**st.secrets["mysql"])
 
 # Perform query.
-# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-@st.experimental_memo(ttl=600)
+# Uses st.experimental_memo to only rerun when the query changes or after 5 min.
+@st.experimental_memo(ttl=300)
 def runMysqlQuery(query, _conn):
     with _conn.cursor() as cur:
         cur.execute(query)
