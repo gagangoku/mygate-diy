@@ -1,10 +1,16 @@
 import json
-
 import ssl
+import time
+import uuid
+
 import extra_streamlit_components as stx
 import mysql.connector
+import rel
 import streamlit as st
+import streamlit.components.v1 as components
 from linkedin_v2 import linkedin
+
+import websocket
 
 LINKEDIN_COOKIE_NAME = 'linkedin'
 
@@ -100,3 +106,81 @@ def runMysqlQuery(query, _conn):
 
 def getLoggedInUser():
     return st.experimental_user
+
+
+def getOrCreateUID():
+    if 'uid' not in st.session_state:
+        st.session_state['uid'] = ''
+    st.session_state['uid'] = st.session_state['uid'] or str(uuid.uuid1())
+    print ('getOrCreateUID: ', st.session_state['uid'])
+    return st.session_state['uid']
+
+
+
+# Generate a unique uid that gets embedded in components.html for frontend
+# Both frontend and server connect to ws using the same uid
+# server sends commands like localStorage_get_key, localStorage_set_key, localStorage_clear_key etc. to the WS server,
+# which relays the commands to the other connected endpoint (the frontend), and back
+def injectWebsocketCode(hostPort, uid):
+    code = '<script>function connect() { console.log("in connect uid: ", "' + uid + '"); var ws = new WebSocket("ws://' + hostPort + '/?uid=' + uid + '");' + """
+  ws.onopen = function() {
+    // subscribe to some channels
+    // ws.send(JSON.stringify({ status: 'connected' }));
+    console.log("onopen");
+  };
+
+  ws.onmessage = function(e) {
+    console.log('Message:', e.data);
+    var obj = JSON.parse(e.data);
+    if (obj.cmd == 'localStorage_get_key') {
+        var val = localStorage[obj.key] || '';
+        ws.send(JSON.stringify({ status: 'success', val }));
+        console.log('returning: ', val);
+    } else if (obj.cmd == 'localStorage_set_key') {
+        localStorage[obj.key] = obj.val;
+        ws.send(JSON.stringify({ status: 'success' }));
+        console.log('set: ', obj.key, obj.val);
+    }
+  };
+
+  ws.onclose = function(e) {
+    console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+    setTimeout(function() {
+      connect();
+    }, 1000);
+  };
+
+  ws.onerror = function(err) {
+    console.error('Socket encountered error: ', err.message, 'Closing socket');
+    ws.close();
+  };
+}
+
+connect();
+</script>
+        """
+    components.html(code, height=0)
+    time.sleep(1)       # Without sleep there are problems
+    return WebsocketClient(hostPort, uid)
+
+
+class WebsocketClient:
+    def __init__(self, hostPort, uid):
+        self.hostPort = hostPort
+        self.uid = uid
+
+    def getLocalStorageVal(self, key):
+        ws = websocket.create_connection("ws://" + self.hostPort + "/?uid=" + self.uid)
+        ws.send(json.dumps({ 'cmd': 'localStorage_get_key', 'key': key }))
+        result = ws.recv()
+        print("Received:", result)
+        ws.close()
+        return json.loads(result)['val']
+
+    def setLocalStorageVal(self, key, val):
+        ws = websocket.create_connection("ws://" + self.hostPort + "/?uid=" + self.uid)
+        ws.send(json.dumps({ 'cmd': 'localStorage_set_key', 'key': key, 'val': val }))
+        result = ws.recv()
+        print("Received:", result)
+        ws.close()
+        return result

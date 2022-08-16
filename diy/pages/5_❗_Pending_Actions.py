@@ -9,7 +9,7 @@ if (not (path2add in sys.path)) :
     sys.path.append(path2add)
 from util import metricFn, getLinkedinOauth, processLinkedinRedirect    # noqa
 
-st.title('Pending actions')
-st.write('TBD')
 
 print ('In Pending_Actions.py')
+st.title('Pending actions')
+st.write('TBD')
