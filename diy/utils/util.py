@@ -45,12 +45,10 @@ def metricFn(value, label, boxColor, fontColor=(0, 0, 0)):
 
 
 def getLinkedinOauth():
-    # objStr = get_manager().get(cookie=LINKEDIN_COOKIE_NAME) or '{}'
-    # obj = json.loads(objStr)
     obj = json.loads('{}')
     CLIENT_KEY = '86k87sfq7cd1s4'
     CLIENT_SECRET = '9HnaSDhz2Yv96Uk0'
-    RETURN_URL = 'http://localhost:8501/%EF%B8%8F_Settings'
+    RETURN_URL = st.secrets['app']['url'] + '/%EF%B8%8F_Settings'
     authentication = linkedin.LinkedInAuthentication(CLIENT_KEY, CLIENT_SECRET, RETURN_URL,
                                                      ['r_liteprofile', 'r_emailaddress'])
     authentication.state = 'linkedin'
