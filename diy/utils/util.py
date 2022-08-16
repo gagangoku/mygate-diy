@@ -1,18 +1,19 @@
+import asyncio
 import json
 import ssl
 import time
 import uuid
 
+import certifi
 import extra_streamlit_components as stx
 import mysql.connector
-import rel
 import streamlit as st
 import streamlit.components.v1 as components
+import websockets
 from linkedin_v2 import linkedin
 
-import websocket
-
 LINKEDIN_COOKIE_NAME = 'linkedin'
+
 
 @st.cache(allow_output_mutation=True)
 def get_manager():
@@ -122,7 +123,7 @@ def getOrCreateUID():
 # server sends commands like localStorage_get_key, localStorage_set_key, localStorage_clear_key etc. to the WS server,
 # which relays the commands to the other connected endpoint (the frontend), and back
 def injectWebsocketCode(hostPort, uid):
-    code = '<script>function connect() { console.log("in connect uid: ", "' + uid + '"); var ws = new WebSocket("ws://' + hostPort + '/?uid=' + uid + '");' + """
+    code = '<script>function connect() { console.log("in connect uid: ", "' + uid + '"); var ws = new WebSocket("wss://' + hostPort + '/?uid=' + uid + '");' + """
   ws.onopen = function() {
     // subscribe to some channels
     // ws.send(JSON.stringify({ status: 'connected' }));
@@ -168,19 +169,29 @@ class WebsocketClient:
     def __init__(self, hostPort, uid):
         self.hostPort = hostPort
         self.uid = uid
+        self.loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(self.loop)
+
+    def sendCommand(self, value):
+        ssl_context = ssl.create_default_context()
+        ssl_context.load_verify_locations(certifi.where())
+
+        async def query(future):
+            async with websockets.connect("wss://" + self.hostPort + "/?uid=" + self.uid, ssl=ssl_context) as ws:
+                await ws.send(value)
+                response = await ws.recv()
+                print('response: ', response)
+                future.set_result(response)
+
+        future1 = asyncio.Future()
+        self.loop.run_until_complete(query(future1))
+        print('future1.result: ', future1.result())
+        return future1.result()
 
     def getLocalStorageVal(self, key):
-        ws = websocket.create_connection("ws://" + self.hostPort + "/?uid=" + self.uid)
-        ws.send(json.dumps({ 'cmd': 'localStorage_get_key', 'key': key }))
-        result = ws.recv()
-        print("Received:", result)
-        ws.close()
+        result = self.sendCommand(json.dumps({ 'cmd': 'localStorage_get_key', 'key': key }))
         return json.loads(result)['val']
 
     def setLocalStorageVal(self, key, val):
-        ws = websocket.create_connection("ws://" + self.hostPort + "/?uid=" + self.uid)
-        ws.send(json.dumps({ 'cmd': 'localStorage_set_key', 'key': key, 'val': val }))
-        result = ws.recv()
-        print("Received:", result)
-        ws.close()
+        result = self.sendCommand(json.dumps({ 'cmd': 'localStorage_set_key', 'key': key, 'val': val }))
         return result

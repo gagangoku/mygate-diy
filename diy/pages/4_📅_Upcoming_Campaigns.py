@@ -19,7 +19,7 @@ st.write('TBD')
 uid = getOrCreateUID()
 st.write('uid: ' + uid)
 
-conn = injectWebsocketCode(hostPort='linode.liquidco.in:8000', uid=uid)
+conn = injectWebsocketCode(hostPort='linode.liquidco.in', uid=uid)
 print ('conn: ', conn)
 
 st.write('calling setLocalStorageVal')

@@ -51,7 +51,7 @@ class SimpleChat(WebSocket):
 
 clients = dict()
 
-server = WebSocketServer('0.0.0.0', 8000, SimpleChat)
+server = WebSocketServer('0.0.0.0', 8001, SimpleChat)
 server.serve_forever()
 
 # Generate a unique uid that gets embedded in components.html for frontend
