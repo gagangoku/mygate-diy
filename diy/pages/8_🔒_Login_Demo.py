@@ -25,7 +25,7 @@ def logoutFn():
     conn.setLocalStorageVal(key=USER_EMAIL_ADDRESS_KEY, val='')
     conn.setLocalStorageVal(key=AUTH_CODE_KEY, val='')
     st.write('Logged out, reloading the page')
-    code = """<script>setTimeout(() => window.parent.location.reload(), 1000)</script>"""
+    code = """<script>setTimeout(() => window.parent.location.reload(), 2000)</script>"""
     components.html(code, height=100)
 
 
