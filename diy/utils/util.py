@@ -1,14 +1,12 @@
 import json
 import ssl
 import time
-import uuid
-import streamlit.components.v1 as components
 
 import extra_streamlit_components as stx
 import mysql.connector
 import streamlit as st
+import streamlit.components.v1 as components
 from linkedin_v2 import linkedin
-from streamlit_ws_localstorage import injectWebsocketCode, WebsocketClient
 
 LINKEDIN_COOKIE_NAME = 'linkedin'
 
@@ -40,49 +38,6 @@ def metricFn(value, label, boxColor, fontColor=(0, 0, 0)):
                             </style><BR><span style='font-size: 15px; 
                             margin-top: 0;'>{label}</style></span></p>"""
     st.markdown(lnk + htmlstr, unsafe_allow_html=True)
-
-
-def loginWithLinkedInComponent(uid):
-    code = """<div id="statusDiv">Waiting for code</div>
-<script>
-function connect(hostPort, uid, localStorageCodeKey) {
-  console.log("in loginWithLinkedInComponent connect uid: ", uid);
-  var ws = new WebSocket("wss://" + hostPort + "/?uid=" + uid);
-  ws.onopen = function() {
-    // subscribe to some channels
-    console.log("loginWithLinkedInComponent onopen");
-  };
-
-  ws.onmessage = function(e) {
-    console.log('Message:', e.data);
-    var obj = JSON.parse(e.data);
-    if (obj.cmd == 'process_auth_redirect') {
-        console.log('process_auth_redirect: ', obj);
-        var code = obj['code'];
-        localStorage[localStorageCodeKey] = code;
-        console.log('saving code: ', code);
-
-        var div = document.getElementById("statusDiv");
-        div.innerHTML = 'Auth code received. Reloading in 5 seconds';
-        setTimeout(() => window.parent.location.reload(), 5000);
-    }
-  };
-
-  ws.onclose = function(e) {
-    console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
-    setTimeout(function() {
-      connect();
-    }, 1000);
-  };
-
-  ws.onerror = function(err) {
-    console.error('Socket encountered error: ', err.message, 'Closing socket');
-    ws.close();
-  };
-}""" + "connect('{}', '{}', '{}');</script>".format('linode.liquidco.in', uid, '_linkedin.authCode')
-    print ('code: ', code)
-    components.html(code, height=40)
-    time.sleep(1)
 
 
 def getLinkedinOauth(uid):

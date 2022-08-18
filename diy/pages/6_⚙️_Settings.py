@@ -4,17 +4,20 @@ import uuid
 
 import streamlit as st
 from streamlit_ws_localstorage import injectWebsocketCode, getOrCreateUID
+from streamlit_ws_localstorage.auth_redirect_server.auth_util import loginWithOAuthComponent
 
 path2add = os.path.normpath(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'utils')))
 print ('path2add: ', path2add)
 if (not (path2add in sys.path)) :
     sys.path.append(path2add)
-from util import metricFn, getLinkedinOauth, getLoggedInUser, initMysqlConnection, runMysqlQuery, loginWithLinkedInComponent, getLinkedinUserProfile    # noqa
+from util import metricFn, getLinkedinOauth, getLoggedInUser, initMysqlConnection, runMysqlQuery, getLinkedinUserProfile    # noqa
 
 
 def main():
     st.title('Settings')
     st.write('Controls like adding your team, email alerts, webhooks for leads etc can be configured here')
+    st.markdown('<a href="{}" target="_blank">Test close tab</a>'.format('https://authredirect.liquidco.in/redirect?code=1&state=2'),
+                unsafe_allow_html=True)
 
     uid = getOrCreateUID()
     conn = injectWebsocketCode(hostPort='linode.liquidco.in', uid=uid)
@@ -36,7 +39,7 @@ def main():
         uid = str(uuid.uuid1())
         obj, authObj = getLinkedinOauth(uid)
         st.markdown('<a href="{}" target="_blank">Login with LinkedIn</a>'.format(authObj.authorization_url), unsafe_allow_html=True)
-        loginWithLinkedInComponent(uid)
+        loginWithOAuthComponent('linode.liquidco.in', uid, '_linkedin.authCode', reloadInSecs=5, height=40)
 
         # userEmail = getLoggedInUser()['email']
         # st.write('User email: {}'.format(userEmail))
