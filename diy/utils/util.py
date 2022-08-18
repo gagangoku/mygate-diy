@@ -1,11 +1,9 @@
 import json
 import ssl
-import time
 
 import extra_streamlit_components as stx
 import mysql.connector
 import streamlit as st
-import streamlit.components.v1 as components
 from linkedin_v2 import linkedin
 
 LINKEDIN_COOKIE_NAME = 'linkedin'
