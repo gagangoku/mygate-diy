@@ -2,12 +2,13 @@ import os
 import sys
 
 import streamlit as st
+from streamlit_ws_localstorage import injectWebsocketCode, getOrCreateUID
 
 path2add = os.path.normpath(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'utils')))
 print ('path2add: ', path2add)
 if (not (path2add in sys.path)) :
     sys.path.append(path2add)
-from util import metricFn, getLinkedinOauth, processLinkedinRedirect, injectWebsocketCode, getOrCreateUID    # noqa
+from util import metricFn, getLinkedinOauth    # noqa
 
 print ('In Upcoming_Campaign.py')
 
