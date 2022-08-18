@@ -9,3 +9,4 @@ websocket-client===1.3.3
 simple-websocket-server===0.4.2
 rel===0.4.7
 websockets===10.3
+streamlit-ws-localstorage===1.0.1
