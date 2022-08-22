@@ -34,6 +34,8 @@ SEGMENT_AUTOMOBILE = 'Automobile split'
 SEGMENT_OWNER_TENANT = 'Owner / tenant'
 SEGMENT_KIDS = 'Kids'
 SEGMENT_PETS = 'Pet affinity'
+SEGMENT_RENTAL_COST = 'Property - rental cost'
+SEGMENT_BUY_SELL_COST = 'Property - buy sell cost'
 
 
 # From https://streamlit.io/gallery
@@ -163,6 +165,13 @@ def kidsSegment():
 def petsSegment():
     st.write('TBD')
 
+def rentalCostSegment():
+    st.write('TBD')
+
+def buySellCostSegment():
+    st.write('TBD')
+
+
 def pledgeSegment():
     st.write('TBD')
     data = pd.read_csv("/tmp/pledge.csv")
@@ -210,7 +219,9 @@ def render():
     segment = st.radio(label="Select a segment to view",
                        options=[SEGMENT_OVERALL, SEGMENT_GENDER, SEGMENT_MOBILE_DEVICE, SEGMENT_AGE,
                                 SEGMENT_GEO_LOCATION, SEGMENT_ECOM_PURCHASE, SEGMENT_FOOD_DELIVERY, SEGMENT_COMMUTE,
-                                SEGMENT_DAILY_HELP, SEGMENT_AUTOMOBILE, SEGMENT_OWNER_TENANT, SEGMENT_KIDS, SEGMENT_PETS])
+                                SEGMENT_DAILY_HELP, SEGMENT_AUTOMOBILE, SEGMENT_OWNER_TENANT, SEGMENT_KIDS, SEGMENT_PETS,
+                                SEGMENT_RENTAL_COST, SEGMENT_BUY_SELL_COST
+    ])
 
     st.header('Segment: ' + segment)
 
@@ -240,6 +251,10 @@ def render():
         kidsSegment()
     elif segment == SEGMENT_PETS:
         petsSegment()
+    elif segment == SEGMENT_RENTAL_COST:
+        rentalCostSegment()
+    elif segment == SEGMENT_BUY_SELL_COST:
+        buySellCostSegment()
     else:
         st.error('Unrecognized segment')
 
