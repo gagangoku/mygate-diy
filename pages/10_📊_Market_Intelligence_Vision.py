@@ -11,7 +11,7 @@ from utils import metricFn, getLinkedinOauth
 
 
 print ('In Market_Intel_Thoughts')
-st.title('Market intelligence - Why')
+st.title('Market intelligence - The vision')
 
 st.markdown("""
     #### Mygate reach
