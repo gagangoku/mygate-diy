@@ -36,9 +36,14 @@ def highchartGraph(chartCode, desc="", theme="light", style=DEFAULT_HIGHCHART_ST
     code = """
     <html>
     <head>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script>__theme__</script>
+
     <!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <style>

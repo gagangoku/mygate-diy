@@ -59,10 +59,10 @@ def load_data():
     )
     return data
 
+
 # FUNCTION FOR AIRPORT MAPS
 def showMap(data, lat, lon, zoom):
-    st.write(
-        pdk.Deck(
+    deck = pdk.Deck(
             map_style="mapbox://styles/mapbox/light-v9",
             initial_view_state={
                 "latitude": lat,
@@ -83,7 +83,10 @@ def showMap(data, lat, lon, zoom):
                 ),
             ],
         )
-    )
+    # deck.deck_widget.on_click(layerOnClick)
+    # deck.deck_widget.on_hover(layerOnHover)
+    st.write(deck)
+
 
 # CALCULATE MIDPOINT FOR GIVEN SET OF DATA
 @st.experimental_memo
