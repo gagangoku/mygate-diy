@@ -3,11 +3,11 @@ import sys
 
 import streamlit as st
 
-path2add = os.path.normpath(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'diy/utils')))
+path2add = os.path.normpath(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'utils')))
 print ('path2add: ', path2add)
 if (not (path2add in sys.path)) :
     sys.path.append(path2add)
-from util import metricFn, getLinkedinOauth    # noqa
+from utils import metricFn, getLinkedinOauth
 
 
 def run():
@@ -27,7 +27,7 @@ def run():
         - <a href="/Upcoming_Campaigns" target="_self">See your upcoming campaigns and actions associated with them</a>
         - <a href="/%EF%B8%8F_Settings" target="_self">Change settings like email alerts, adding team, leads webhooks etc.</a>
         ### Want to learn more?
-        - Ask a question in our [community forums](https://discuss.streamlit.io)
+        - [Email us](mailto:gagandeep@mygate.in)
     """, unsafe_allow_html=True)
 
 

@@ -1,3 +1,4 @@
+from .highcharts import highchartGraph
 import json
 import ssl
 
