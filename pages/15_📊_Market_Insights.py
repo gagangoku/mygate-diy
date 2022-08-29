@@ -262,6 +262,8 @@ def render():
     st.markdown('Want access to detailed data reports - <a href="mailto:gagandeep@mygate.in?Subject=I want detailed reports">Signup here</a>', unsafe_allow_html=True)
     st.markdown('Want to run your own campaigns on a custom segment - <a href="mailto:gagandeep@mygate.in?Subject=I want to run my campaign on a custom segment">Run your campaign</a>', unsafe_allow_html=True)
 
+
+# st.set_page_config(layout="wide")
 st.title('Market Insights')
 print ('In Market_Insights.py')
 render()

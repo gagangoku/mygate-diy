@@ -11,7 +11,7 @@ from utils import metricFn, getLinkedinOauth
 
 
 def run():
-    st.set_page_config(layout="wide")
+    # st.set_page_config(layout="centered")
     st.title('Mygate DIY')
 
     print ('in Home.py')

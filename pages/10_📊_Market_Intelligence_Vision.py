@@ -11,18 +11,20 @@ from utils import metricFn, getLinkedinOauth
 
 
 print ('In Market_Intel_Thoughts')
+# st.set_page_config(layout="wide")
 st.title('Market intelligence - The vision')
 
 st.markdown("""
-    #### Mygate reach
+    ### Mygate reach
+    Mygate is the default gate security app for gated communities today and a well known brand.
 """, unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3)
 with col1:
-    metricFn('3.5 Million', 'Homes on Mygate', (0, 250, 102))
+    metricFn('3.5 Million', 'Homes on Mygate', boxColor=(0, 250, 102), maxWidth=300)
 with col2:
-    metricFn('2.5 Million', 'Active users on Mygate', (245, 138, 66))
+    metricFn('2.5 Million', 'Active users on Mygate', boxColor=(245, 138, 66), maxWidth=300)
 with col3:
-    metricFn('25000+', 'Societies on Mygate', (252, 3, 252))
+    metricFn('25000+', 'Societies on Mygate', boxColor=(252, 3, 252), maxWidth=300)
 
 
 st.markdown("""
@@ -46,10 +48,10 @@ st.markdown("""
     ### Who can use it
     - Marketers & brands - growth stage, user acquisition
     - VC's - to see where the market is, and solidify their thesis
-    - Incubators / accelerators - 
-    - Consultancies
-    - Marketing agencies
-    - Influencers
+    - Incubators / accelerators - to recognize trends and advise their portfolio companies
+    - Consultancies - to get the on ground reality and advise their customers on how to grow
+    - Marketing agencies - to acquire lots of customers for your customers
+    - Influencers - to understand market sentiments and what their audience might find interesting
 
     ### Data is the new oil
     The idea is to collect these kinds of super valuable insights, and eventually build the ability to target such segments on Mygate.

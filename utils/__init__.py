@@ -15,7 +15,7 @@ def get_manager():
     return stx.CookieManager()
 
 
-def metricFn(value, label, boxColor, fontColor=(0, 0, 0)):
+def metricFn(value, label, boxColor, fontColor=(0, 0, 0), maxWidth=500):
     fontsize = 36
     valign = "left"
     iconname = "fas fa-asterisk"
@@ -31,7 +31,8 @@ def metricFn(value, label, boxColor, fontColor=(0, 0, 0)):
                             border-radius: 7px; 
                             padding-left: 20px; 
                             padding-top: 20px; 
-                            padding-bottom: 20px; 
+                            padding-bottom: 20px;
+                            max-width: {maxWidth}px;
                             line-height:25px;'>
                             <i class1='{iconname} fa-xs'></i> {value}
                             </style><BR><span style='font-size: 15px; 
