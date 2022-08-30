@@ -3,15 +3,15 @@ import sys
 import uuid
 
 import streamlit as st
+import streamlit.components.v1 as components
 from streamlit_ws_localstorage import injectWebsocketCode
 from streamlit_ws_localstorage.auth_redirect_server.auth_util import loginWithOAuthComponent
-import streamlit.components.v1 as components
 
 path2add = os.path.normpath(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, 'utils')))
 print ('path2add: ', path2add)
 if (not (path2add in sys.path)):
     sys.path.append(path2add)
-from utils import metricFn, getLinkedinOauth, getLoggedInUser, initMysqlConnection, runMysqlQuery, getLinkedinUserProfile
+from utils import getLinkedinOauth, getLinkedinUserProfile, initStreamlitApp
 
 
 USER_PROFILE_PIC_KEY = '_user.profilePic'
@@ -56,4 +56,5 @@ def main():
         loginWithOAuthComponent('linode.liquidco.in', uid, AUTH_CODE_KEY, reloadInSecs=6, height=40)
 
 print ('In Login_Demo.py')
+initStreamlitApp()
 main()

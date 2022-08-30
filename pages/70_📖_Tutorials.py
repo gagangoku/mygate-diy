@@ -7,9 +7,10 @@ path2add = os.path.normpath(os.path.abspath(os.path.join(os.path.dirname(__file_
 print ('path2add: ', path2add)
 if (not (path2add in sys.path)) :
     sys.path.append(path2add)
-from utils import highchartGraph
+from utils import initStreamlitApp
 
 
+initStreamlitApp()
 st.title('Tutorials')
 st.write('Videos of how you to use the DIY tool')
 

@@ -8,7 +8,7 @@ path2add = os.path.normpath(os.path.abspath(os.path.join(os.path.dirname(__file_
 print ('path2add: ', path2add)
 if (not (path2add in sys.path)) :
     sys.path.append(path2add)
-from utils import metricFn, getLinkedinOauth
+from utils import metricFn, initStreamlitApp
 
 import matplotlib.pyplot as plt
 import pydeck as pdk
@@ -266,7 +266,7 @@ def render():
     st.markdown('Want to run your own campaigns on a custom segment - <a href="mailto:gagandeep@mygate.in?Subject=I want to run my campaign on a custom segment">Run your campaign</a>', unsafe_allow_html=True)
 
 
-# st.set_page_config(layout="wide")
+initStreamlitApp()
 st.title('Market Insights')
 print ('In Market_Insights.py')
 render()

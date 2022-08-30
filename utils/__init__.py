@@ -98,3 +98,6 @@ def runMysqlQuery(query, _conn):
 
 def getLoggedInUser():
     return st.experimental_user
+
+def initStreamlitApp():
+    st.set_page_config(layout="centered")

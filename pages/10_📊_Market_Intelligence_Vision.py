@@ -1,3 +1,4 @@
+import datetime
 import os
 import sys
 
@@ -7,11 +8,11 @@ path2add = os.path.normpath(os.path.abspath(os.path.join(os.path.dirname(__file_
 print ('path2add: ', path2add, __file__)
 if (not (path2add in sys.path)):
     sys.path.append(path2add)
-from utils import metricFn, highchartGraph
+from utils import metricFn, highchartGraph, initStreamlitApp
 
 
 print ('In Market_Intel_Thoughts')
-# st.set_page_config(layout="wide")
+initStreamlitApp()
 st.title('Market intelligence - The vision')
 
 st.markdown("""
@@ -71,7 +72,7 @@ st.markdown("""
 
 
 INDUSTRIES = ['Ecom', 'Food delivery', 'Housing', 'BFSI', 'Automotive', 'Fashion', 'F&B', 'Healthcare']
-TIMES = ['last 7 days', 'last 30 days', 'last 3 months']
+TIMES = ['last 7 days', 'last 30 days', 'last 3 months', 'custom range']
 SEGMENTS = [
     ' ',
 
@@ -107,7 +108,7 @@ SEGMENTS = [
 col1, col2 = st.columns([2, 10])
 with col1:
     st.markdown("""
-    <div style="font-weight: bold; font-size: 20px; margin-top: 10px;">Industry:</div>
+    <div style="font-weight: bold; font-size: 20px; margin-top: 10px;">INDUSTRY:</div>
      """, unsafe_allow_html=True)
 with col2:
     tabs = st.tabs(INDUSTRIES)
@@ -120,7 +121,13 @@ with col2:
     seg2 = st.selectbox('Segment 2', SEGMENTS)
 with col3:
     seg3 = st.selectbox('Time range', TIMES, index=0)
-
+if seg3 == TIMES[len(TIMES) - 1]:
+    # Custom range
+    c1, c2 = st.columns(2)
+    with c1:
+        startDate = st.date_input('Start Date', datetime.datetime.today() - datetime.timedelta(days=90))
+    with c2:
+        endDate = st.date_input('End Date')
 
 mapTitle = seg1
 obj = """

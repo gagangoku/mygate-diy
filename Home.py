@@ -7,11 +7,11 @@ path2add = os.path.normpath(os.path.abspath(os.path.join(os.path.dirname(__file_
 print ('path2add: ', path2add)
 if (not (path2add in sys.path)) :
     sys.path.append(path2add)
-from utils import metricFn, getLinkedinOauth
+from utils import metricFn, getLinkedinOauth, initStreamlitApp
 
 
 def run():
-    # st.set_page_config(layout="centered")
+    initStreamlitApp()
     st.title('Mygate DIY')
 
     print ('in Home.py')
