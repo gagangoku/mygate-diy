@@ -37,29 +37,43 @@ st.markdown("""
     - more than 10 Million e-com deliveries every month
     - more than 7 Million food deliveries every month
     - more than 30 Million daily help (maid / cook / nanny / driver / car washer) entries per month
-    - ...
-
-    We <b>don't extrapolate</b> from partial data to come up with a representative number, since we are the source of data.
+    - more than 5 Lakh guards checking in daily
+    - more than 300 Crores of maintenance dues paid every year
+    - and more ...
+    <br/>
 
     ### Imagine if
     Some super interesting things we can do with this data:
     - Split of food delivery frequency by city, locality, society. Which areas are picking up, which areas are underserved
     - Split by owner / tenant - are tenants more likely to order food ?
-    - Split by closeness to techparks - 
+    - Split by closeness to techparks - are certain areas more likely to see rental demand / food delivery orders
     - Split by daily help (maid / cook) - are users who employ a cook less (or more) likely to order food ? Are they more likely to order food when the cook doesnt come ?
-    - Split by when they shifted in the society - are newcomers more likely to order food ?
-    - ...
+    - Split by when a user shifted in the society - are newcomers more likely to order food ?
+    - Split by how old the society is - do newer societies consume more e-com / services ? 
+    - Which food delivery companies are picking up in certain areas ? Which are the areas that have seen the highest change.
+    - Split of services by gender - are men more likely to get a service than women ?
+    - and more ...
+    
+    Ofcourse these are just the ones we can think of. Imagine getting your hands dirty and figuring out a trend that nobody else has.
+    <br/>
 
-    ### Who can use it
+    ### The Mygate USP
+    - We <b>don't extrapolate</b> from partial data to come up with a representative number, since we are the source of data.
+    - We have a ready pipeline of visitors and in 25000 communities producing <b>1 Million+ data points every day</b>
+    - We have the ability to <b>target</b> these interesting segments of users
+    <br/>
+
+    ### Who can use this tool
     - <b>Marketers & brands</b> - to identify market opportunities, user acquisition
     - <b>Venture Capital</b> - to see where the market is, and solidify their thesis, identify upcoming trends
     - <b>Incubators / accelerators</b> - to identify trends and advise their portfolio companies
     - <b>Consultancies</b> - to get the on ground reality and advise their customers on how to grow
     - <b>Marketing agencies</b> - to acquire lots of customers for your customers
     - <b>Influencers</b> - to understand market sentiments and what their audience might find interesting
+    <br/>
 
     ### Data is the new oil
-    The idea of this product is to showcase these kinds of super valuable insights, and eventually build the ability to
+    The idea behind this product is to showcase these kinds of super valuable insights, and eventually build the ability to
     target such segments on Mygate.
 
     Tell us what data you find interesting - [EMAIL US](mailto:gagandeep@mygate.in?Subject=I%20find%20this%20interesting).
