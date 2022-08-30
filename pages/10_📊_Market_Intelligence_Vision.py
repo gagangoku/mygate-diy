@@ -17,6 +17,7 @@ st.title('Market intelligence - The vision')
 st.markdown("""
     ### Mygate reach
     Mygate is the default gate security app for gated communities today and a well known brand.
+    Till date mygate has enabled more than 1000 top brands of India to connect with their audience residing in Mygate societies.
 """, unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3)
 with col1:
@@ -28,7 +29,10 @@ with col3:
 
 
 st.markdown("""
+    <br/>
+
     ### Data captured
+    Every visitor entering & exiting the society is tracked at the gate. We have:
     - more than 10 Million e-com deliveries every month
     - more than 7 Million food deliveries every month
     - more than 30 Million daily help (maid / cook / nanny / driver / car washer) entries per month
@@ -36,7 +40,7 @@ st.markdown("""
 
     We <b>don't extrapolate</b> from partial data to come up with a representative number, since we are the source of data.
 
-    ### Imagine
+    ### Imagine if
     Some super interesting things we can do with this data:
     - Split of food delivery frequency by city, locality, society. Which areas are picking up, which areas are underserved
     - Split by owner / tenant - are tenants more likely to order food ?
@@ -46,19 +50,21 @@ st.markdown("""
     - ...
 
     ### Who can use it
-    - Marketers & brands - growth stage, user acquisition
-    - VC's - to see where the market is, and solidify their thesis
-    - Incubators / accelerators - to recognize trends and advise their portfolio companies
-    - Consultancies - to get the on ground reality and advise their customers on how to grow
-    - Marketing agencies - to acquire lots of customers for your customers
-    - Influencers - to understand market sentiments and what their audience might find interesting
+    - <b>Marketers & brands</b> - to identify market opportunities, user acquisition
+    - <b>Venture Capital</b> - to see where the market is, and solidify their thesis, identify upcoming trends
+    - <b>Incubators / accelerators</b> - to identify trends and advise their portfolio companies
+    - <b>Consultancies</b> - to get the on ground reality and advise their customers on how to grow
+    - <b>Marketing agencies</b> - to acquire lots of customers for your customers
+    - <b>Influencers</b> - to understand market sentiments and what their audience might find interesting
 
     ### Data is the new oil
-    The idea is to collect these kinds of super valuable insights, and eventually build the ability to target such segments on Mygate.
+    The idea of this product is to showcase these kinds of super valuable insights, and eventually build the ability to
+    target such segments on Mygate.
 
-    Tell us what data is interesting to you - [EMAIL US](mailto:gagandeep@mygate.in?Subject=I%20find%20this%20interesting).
+    Tell us what data you find interesting - [EMAIL US](mailto:gagandeep@mygate.in?Subject=I%20find%20this%20interesting).
 
     <br/><br/>
+
     ## DEMO
     <br/>
 """, unsafe_allow_html=True)
@@ -265,10 +271,10 @@ Highcharts.chart('container', {
         enabled: false
     },
     series: [{
-        name: 'Seg 1',
+        name: 'Segment 1',
         data: [43]
     }, {
-        name: 'Seg 2',
+        name: 'Segment 2',
         data: [57]
     }],
     exporting: {enabled: false},
