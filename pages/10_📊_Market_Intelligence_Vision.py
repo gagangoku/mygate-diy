@@ -59,7 +59,8 @@ st.markdown("""
     Tell us what data is interesting to you - [EMAIL US](mailto:gagandeep@mygate.in?Subject=I%20find%20this%20interesting).
 
     <br/><br/>
-    ### DEMO
+    ## DEMO
+    <br/>
 """, unsafe_allow_html=True)
 
 
