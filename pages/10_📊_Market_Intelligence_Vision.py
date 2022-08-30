@@ -211,7 +211,10 @@ st.write('')
 colChart = """
 Highcharts.chart('container', {
     chart: {
-        type: 'bar'
+        type: 'bar',
+        height: __height__,
+        borderWidth: 1,
+        borderColor: 'rgba(200, 200, 200, 0.5)',
     },
     title: {
         text: 'Segment split'
@@ -220,16 +223,16 @@ Highcharts.chart('container', {
         text: ''
     },
     xAxis: {
-        categories: ['Distribution'],
+        categories: [''],
         title: {
-            text: null
-        }
+            text: '<b>Distribution</b>',
+        },
     },
     yAxis: {
         min: 0,
+        max: 200,
         title: {
-            text: 'Value',
-            align: 'high'
+            text: '<b>Value</b>',
         },
         labels: {
             overflow: 'justify'
@@ -239,6 +242,7 @@ Highcharts.chart('container', {
     },
     plotOptions: {
         bar: {
+            pointWidth: 15,
             dataLabels: {
                 enabled: true
             }
@@ -269,14 +273,17 @@ Highcharts.chart('container', {
     exporting: {enabled: false},
 });
 """
-highchartGraph(colChart, theme="light")
+highchartGraph(colChart, theme="light", height=300)
 
 
 
 colChart = """
 Highcharts.chart('container', {
     chart: {
-        type: 'column'
+        type: 'column',
+        height: __height__,
+        borderWidth: 1,
+        borderColor: 'rgba(200, 200, 200, 0.5)',
     },
     title: {
         text: 'Distribution by locality'
