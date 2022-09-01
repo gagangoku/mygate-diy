@@ -672,4 +672,4 @@ def demo():
     heatmapChart()
 
 
-# demo()
+demo()
