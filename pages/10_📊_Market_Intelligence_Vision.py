@@ -109,28 +109,25 @@ def columnChartMygateMarketShare():
             }
         },
         series: [{
-            name: 'Brands',
+            name: 'Mkt share',
             colorByPoint: true,
             data: [{
                 name: 'Mygate',
-                y: 30000,
+                y: 82,
                 sliced: true,
                 selected: true
             }, {
                 name: 'Nobrokerhood',
-                y: 5000,
+                y: 13,
             },  {
                 name: 'ApnaComplex',
-                y: 1000,
+                y: 2,
             }, {
                 name: 'Adda',
-                y: 1000,
-            }, {
-                name: 'JioGate',
-                y: 500,
+                y: 2,
             }, {
                 name: 'Other',
-                y: 1000,
+                y: 1,
             }]
         }],
 
