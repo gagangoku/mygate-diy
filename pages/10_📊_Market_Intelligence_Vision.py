@@ -8,7 +8,7 @@ path2add = os.path.normpath(os.path.abspath(os.path.join(os.path.dirname(__file_
 print ('path2add: ', path2add, __file__)
 if (not (path2add in sys.path)):
     sys.path.append(path2add)
-from utils import metricFn, highchartGraph, initStreamlitApp
+from utils import metricFn, highchartGraph, initStreamlitApp, hideMainMenu
 
 
 def columnChartDailyHelp():
@@ -132,6 +132,61 @@ def columnChartMygateMarketShare():
         }],
 
 
+        exporting: {enabled: false},
+    });
+    """
+    highchartGraph(colChart, theme="light", height=400)
+
+
+def pieChartDeliverySplit():
+    colChart = """
+    Highcharts.chart('container', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie',
+            height: __height__,
+            borderWidth: 1,
+            borderColor: 'rgba(200, 200, 200, 0.5)',
+        },
+        title: {
+            text: '<b>Deliveries in last 30 days</b>',
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            name: 'Company',
+            colorByPoint: true,
+            data: [
+                {name:'Swiggy', y:6205256},
+                {name:'Amazon', y:4425590},
+                {name:'Zomato', y:3342551},
+                {name:'Delhivery', y:1669363},
+                {name:'Flipkart', y:895799},
+                {name:'Xpressbees', y:741273},
+                {name:'Bigbasket', y:635805},
+                {name:'Myntra', y:472556},
+                {name:'Bluedart', y:379253},
+                {name:'DTDC', y:327903},
+            ]
+        }],
         exporting: {enabled: false},
     });
     """
@@ -456,6 +511,7 @@ Highcharts.chart('container', {
 print ('In Market_Intel_Thoughts')
 initStreamlitApp()
 st.title('Market intelligence - The vision')
+hideMainMenu()
 
 st.markdown("""
     ### Mygate reach
@@ -484,13 +540,16 @@ st.markdown("""
     - and more ...
     <br/>
 
+    <div style="height: 0px;">&nbsp;</div> <!-- For line break -->
+
     ### Imagine if
     """, unsafe_allow_html=True)
-columnChartDailyHelp()
+pieChartDeliverySplit()
 st.markdown("""
+    Plotted above is the split of deliveries in Mygate societies in the last 30 days.
     <br/>
 
-    Some super interesting things we can do with this data:
+    Some super interesting things we can do with data Mygate captures:
     - Split of food delivery frequency by city, locality, society. Which areas are picking up, which areas are underserved
     - Split by owner / tenant - are tenants more likely to order food ?
     - Split by closeness to techparks - are certain areas more likely to see rental demand / food delivery orders
@@ -501,17 +560,20 @@ st.markdown("""
     - Split of services by gender - are men more likely to get a service than women ?
     - and more ...
     
-    Ofcourse these are just the ones we can think of. Imagine getting your hands dirty and figuring out a trend that nobody else has.
+    Ofcourse these are just the ones we can think of. Imagine getting your hands dirty and <b>figuring out a trend that nobody else has.</b>
     <br/><br/>
+
+    <div style="height: 0px;">&nbsp;</div> <!-- For line break -->
 
     ### The Mygate USP
     """, unsafe_allow_html=True)
 columnChartMygateMarketShare()
 st.markdown("""
+    Being the market leader by a big margin has a lot of advantages:
 
     - We <b>don't extrapolate</b> from partial data to come up with a representative number, since we are the source of data.
-    - We have a ready pipeline of visitors and in 25000 communities producing <b>1 Million+ data points every day</b>
-    - We have the ability to <b>target</b> these interesting segments of users
+    - We have a ready pipeline of visitors and in 25000 communities producing <b>1 Million+ data points every day.</b>
+    - We have the ability to <b>target</b> these interesting segments of users.
     <br/>
 
     ### Who can use this tool
@@ -523,6 +585,8 @@ st.markdown("""
     - <b>Influencers</b> - to understand market sentiments and what their audience might find interesting
     <br/>
 
+    <div style="height: 0px;">&nbsp;</div> <!-- For line break -->
+
     ### Data is the new oil
     The idea behind this product is to showcase these kinds of super valuable insights, and eventually build the ability to
     target such segments on Mygate.
@@ -530,9 +594,6 @@ st.markdown("""
     Tell us what data you find interesting - [EMAIL US](mailto:gagandeep@mygate.in?Subject=I%20find%20this%20interesting).
 
     <br/><br/>
-
-    ## DEMO
-    <br/>
 """, unsafe_allow_html=True)
 
 
@@ -570,36 +631,45 @@ SEGMENTS = [
     'city', 'locality', 'pincode',
 ]
 
-col1, col2 = st.columns([2, 10])
-with col1:
+def demo():
     st.markdown("""
-    <div style="font-weight: bold; font-size: 20px; margin-top: 10px;">INDUSTRY:</div>
-     """, unsafe_allow_html=True)
-with col2:
-    tabs = st.tabs(INDUSTRIES)
+    ## DEMO
+    <br/>
+    """, unsafe_allow_html=True)
+
+    col1, col2 = st.columns([2, 10])
+    with col1:
+        st.markdown("""
+        <div style="font-weight: bold; font-size: 20px; margin-top: 10px;">INDUSTRY:</div>
+         """, unsafe_allow_html=True)
+    with col2:
+        tabs = st.tabs(INDUSTRIES)
 
 
-col1, col2, col3 = st.columns([2, 2, 1], gap="small")
-with col1:
-    seg1 = st.selectbox('Segment 1', SEGMENTS)
-with col2:
-    seg2 = st.selectbox('Segment 2', SEGMENTS)
-with col3:
-    seg3 = st.selectbox('Time range', TIMES, index=0)
-if seg3 == TIMES[len(TIMES) - 1]:
-    # Custom range
-    c1, c2 = st.columns(2)
-    with c1:
-        startDate = st.date_input('Start Date', datetime.datetime.today() - datetime.timedelta(days=90))
-    with c2:
-        endDate = st.date_input('End Date')
+    col1, col2, col3 = st.columns([2, 2, 1], gap="small")
+    with col1:
+        seg1 = st.selectbox('Segment 1', SEGMENTS)
+    with col2:
+        seg2 = st.selectbox('Segment 2', SEGMENTS)
+    with col3:
+        seg3 = st.selectbox('Time range', TIMES, index=0)
+    if seg3 == TIMES[len(TIMES) - 1]:
+        # Custom range
+        c1, c2 = st.columns(2)
+        with c1:
+            startDate = st.date_input('Start Date', datetime.datetime.today() - datetime.timedelta(days=90))
+        with c2:
+            endDate = st.date_input('End Date')
 
-mapTitle = seg1
+    mapTitle = seg1
 
-chart1(mapTitle)
-st.write('')
+    chart1(mapTitle)
+    st.write('')
 
 
-chart2()
-chart3()
-heatmapChart()
+    chart2()
+    chart3()
+    heatmapChart()
+
+
+# demo()

@@ -101,3 +101,14 @@ def getLoggedInUser():
 
 def initStreamlitApp():
     st.set_page_config(layout="centered")
+
+def hideMainMenu():
+    hide_streamlit_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    .css-hi6a2p {padding-top: 0rem;}
+    .block-container {padding-top: 2rem;}
+    </style>
+    """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
