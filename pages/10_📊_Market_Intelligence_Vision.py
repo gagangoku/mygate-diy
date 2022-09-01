@@ -390,7 +390,7 @@ Highcharts.chart('container', {
         text: 'Distribution by time of day'
     },
     xAxis: {
-        categories: ['0am-4am', '4am-8am', '8am-12pm', '12pm-4pm', '4pm-8pm', '8pm-12am'],
+        categories: ['12am-4am', '4am-8am', '8am-12pm', '12pm-4pm', '4pm-8pm', '8pm-12am'],
         title: {text:'<b>Hour of day</b>'},
     },
     yAxis: {
