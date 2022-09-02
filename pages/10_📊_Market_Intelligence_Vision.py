@@ -535,7 +535,8 @@ st.markdown("""
     - more than 10 Million e-com deliveries every month
     - more than 7 Million food deliveries every month
     - more than 30 Million daily help (maid / cook / nanny / driver / car washer) entries per month
-    - more than 5 Lakh guards checking in daily
+    - more than 17 Lakh maids checking in daily
+    - more than 6 Lakh guards checking in daily
     - more than 300 Crores of maintenance dues paid every year
     - and more ...
     <br/>
