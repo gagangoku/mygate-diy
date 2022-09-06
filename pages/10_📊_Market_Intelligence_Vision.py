@@ -580,6 +580,7 @@ st.markdown("""
     ### Who can use this tool
     - <b>Marketers & brands</b> - to identify market opportunities, user acquisition
     - <b>Venture Capital</b> - to see where the market is, and solidify their thesis, identify upcoming trends
+    - <b>Customer data platforms</b> - to augment with the data they're collecting and expand on their offering
     - <b>Incubators / accelerators</b> - to identify trends and advise their portfolio companies
     - <b>Consultancies</b> - to get the on ground reality and advise their customers on how to grow
     - <b>Marketing agencies</b> - to acquire lots of customers for your customers
